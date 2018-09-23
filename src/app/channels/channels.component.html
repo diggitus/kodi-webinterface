@@ -1,0 +1,15 @@
+<ng-container *ngIf="channels">
+	<ng-container *ngFor="let channel of channels.result.channels">
+		<div class="card mb-2 ml-4 mr-4">
+			<div class="card-body">
+				<h5 class="card-title">{{ channel.label }}</h5>
+	
+				<ng-container *ngIf="channel.broadcastnow">
+					<h6 class="card-subtitle mb-2 text-muted">{{ getTime(channel.broadcastnow.starttime) | date:'HH:mm' }} - {{ getTime(channel.broadcastnow.endtime) | date:'HH:mm' }}</h6>
+					<h6 class="card-subtitle mb-2 text-muted">{{ channel.broadcastnow.title }}</h6>
+					<div class="progress-bar" [style.width.%]="channel.broadcastnow.progresspercentage"></div>
+				</ng-container>
+			</div>
+		</div>
+	</ng-container>
+</ng-container>
