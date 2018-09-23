@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { channels } from './channels-resp';
 import { ChannelsObj } from '../model/channels';
 
 import 'rxjs/add/observable/of';
@@ -16,7 +15,8 @@ export class ChannelsService {
   ) { }
 
   public getChannels(): Observable<ChannelsObj> {
-    return Observable.of(<ChannelsObj>channels);
+    const body = {"jsonrpc":"2.0","method":"PVR.GetChannels","id":"1537717668728","params":{"channelgroupid":"alltv","properties":["thumbnail","channeltype","hidden","locked","channel","lastplayed","broadcastnow","isrecording"],"limits":{"start":0}}};
+    return this.http.post('/jsonrpc?ChannelCollection', body).map((resp: Response) => <ChannelsObj>resp.json());
   }
 
 }

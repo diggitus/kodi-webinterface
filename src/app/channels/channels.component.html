@@ -1,4 +1,4 @@
-<ng-container *ngIf="channels">
+<ng-container *ngIf="channels && channels.result && channels.result.channels">
 	<ng-container *ngFor="let channel of channels.result.channels">
 		<div class="card mb-2 ml-4 mr-4">
 			<div class="card-body">
